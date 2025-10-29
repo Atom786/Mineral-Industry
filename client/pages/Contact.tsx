@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, MapPin, Phone, Mail, Clock } from "lucide-react";
 import Layout from "@/components/Layout";
-import emailjs from "@emailjs/browser";
 
 const contactInfo = [
   {
