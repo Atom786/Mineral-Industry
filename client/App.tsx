@@ -47,15 +47,13 @@ const App = () => (
   </QueryClientProvider>
 );
 
-let root: any;
+const rootElement = document.getElementById("root") as any;
 
-const rootElement = document.getElementById("root");
-if (rootElement && !root) {
-  root = createRoot(rootElement);
-}
-
-if (root) {
-  root.render(<App />);
+if (rootElement) {
+  if (!rootElement._reactRootContainer) {
+    rootElement._reactRootContainer = createRoot(rootElement);
+  }
+  rootElement._reactRootContainer.render(<App />);
 }
 
 if (import.meta.hot) {
