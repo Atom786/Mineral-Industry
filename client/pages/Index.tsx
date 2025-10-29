@@ -158,12 +158,26 @@ export default function Index() {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="bg-gradient-to-br from-primary to-primary/70 rounded-lg h-96 flex items-center justify-center text-6xl">
+            <motion.div
+              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <motion.div
+                className="bg-gradient-to-br from-primary to-primary/70 rounded-lg h-96 flex items-center justify-center text-6xl"
+                whileHover={{ scale: 1.05, rotate: 2 }}
+                transition={{ duration: 0.3 }}
+              >
                 🏭
-              </div>
-            </div>
-            <div>
+              </motion.div>
+            </motion.div>
+            <motion.div
+              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: 50 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
                 Welcome To Minerals Co.
               </h2>
@@ -187,7 +201,7 @@ export default function Index() {
                 Learn More About Us
                 <ArrowRight size={20} />
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -206,24 +220,38 @@ export default function Index() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product) => (
-              <Link
+            {products.map((product, idx) => (
+              <motion.div
                 key={product.id}
-                to={product.path}
-                className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden group"
+                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 50 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true, amount: 0.3 }}
               >
-                <div className="bg-gradient-to-br from-primary/10 to-accent/10 h-48 flex items-center justify-center text-6xl group-hover:scale-110 transition-transform">
-                  {product.image}
-                </div>
-                <div className="p-6">
-                  <h3 className="font-bold text-lg text-primary group-hover:text-accent transition-colors">
-                    {product.name}
-                  </h3>
-                  <p className="text-sm text-foreground/60 mt-2">
-                    High-quality mineral product for industrial applications
-                  </p>
-                </div>
-              </Link>
+                <Link
+                  to={product.path}
+                  className="block bg-white rounded-lg shadow-md overflow-hidden h-full"
+                >
+                  <motion.div
+                    className="bg-gradient-to-br from-primary/10 to-accent/10 h-48 flex items-center justify-center text-6xl"
+                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {product.image}
+                  </motion.div>
+                  <motion.div
+                    className="p-6"
+                    whileHover={{ backgroundColor: "rgba(24, 97, 50, 0.02)" }}
+                  >
+                    <h3 className="font-bold text-lg text-primary hover:text-accent transition-colors">
+                      {product.name}
+                    </h3>
+                    <p className="text-sm text-foreground/60 mt-2">
+                      High-quality mineral product for industrial applications
+                    </p>
+                  </motion.div>
+                </Link>
+              </motion.div>
             ))}
           </div>
 
