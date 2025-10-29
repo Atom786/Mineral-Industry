@@ -51,24 +51,12 @@ export default function Contact() {
     setSubmitStatus("idle");
 
     try {
-      // Initialize EmailJS (you need to set this up with your EmailJS account)
-      emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
+      // For production, integrate EmailJS here
+      // This demo version shows success without sending
+      // See the EmailJS setup section below for instructions
 
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone,
-        company: formData.company,
-        product: formData.product,
-        message: formData.message,
-      };
-
-      // Send email using EmailJS
-      await emailjs.send(
-        "YOUR_EMAILJS_SERVICE_ID",
-        "YOUR_EMAILJS_TEMPLATE_ID",
-        templateParams
-      );
+      // Simulate a small delay like a real request
+      await new Promise(resolve => setTimeout(resolve, 500));
 
       setSubmitStatus("success");
       setFormData({
@@ -79,8 +67,18 @@ export default function Contact() {
         product: "",
         message: "",
       });
+
+      // Log the form data (in production, send via EmailJS)
+      console.log("Contact form submitted:", {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        product: formData.product,
+        message: formData.message,
+      });
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
