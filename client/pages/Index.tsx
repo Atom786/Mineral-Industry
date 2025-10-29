@@ -75,25 +75,66 @@ export default function Index() {
     <Layout>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary to-primary-dark min-h-[500px] md:min-h-screen flex items-center text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-          <div
-            className="absolute bottom-10 right-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"
-            style={{ animationDelay: "2s" }}
-          ></div>
-        </div>
+        {/* Animated Background Elements */}
+        <motion.div
+          className="absolute inset-0 opacity-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.1 }}
+          transition={{ duration: 1 }}
+        >
+          <motion.div
+            className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl"
+            animate={{
+              y: [0, 50, 0],
+              x: [0, 30, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          <motion.div
+            className="absolute bottom-10 right-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl"
+            animate={{
+              y: [0, -50, 0],
+              x: [0, -30, 0],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1,
+            }}
+          />
+        </motion.div>
 
         <div className="container mx-auto px-4 relative z-10 py-20 md:py-0">
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <motion.h1
+              className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
               Premium Industrial Minerals & Products
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
+            </motion.h1>
+            <motion.p
+              className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               Leading supplier of high-quality minerals for industries
               worldwide. With over 15 years of excellence, we deliver superior
               products and unmatched service.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            </motion.p>
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               <Link
                 to="/contact"
                 className="bg-accent text-accent-foreground px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2"
@@ -108,7 +149,7 @@ export default function Index() {
                 View Products
                 <ArrowRight size={20} />
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
