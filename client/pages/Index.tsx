@@ -45,7 +45,8 @@ const highlights = [
   {
     number: "01",
     title: "Quality Materials",
-    description: "Premium grade minerals sourced and processed to international standards",
+    description:
+      "Premium grade minerals sourced and processed to international standards",
     icon: Award,
   },
   {
@@ -75,7 +76,10 @@ export default function Index() {
       <section className="relative bg-gradient-to-br from-primary via-primary to-primary-dark min-h-[500px] md:min-h-screen flex items-center text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: "2s" }}></div>
+          <div
+            className="absolute bottom-10 right-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"
+            style={{ animationDelay: "2s" }}
+          ></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10 py-20 md:py-0">
@@ -84,8 +88,9 @@ export default function Index() {
               Premium Industrial Minerals & Products
             </h1>
             <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
-              Leading supplier of high-quality minerals for industries worldwide. 
-              With over 15 years of excellence, we deliver superior products and unmatched service.
+              Leading supplier of high-quality minerals for industries
+              worldwide. With over 15 years of excellence, we deliver superior
+              products and unmatched service.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -121,14 +126,17 @@ export default function Index() {
                 Welcome To Minerals Co.
               </h2>
               <p className="text-lg text-foreground/80 mb-6 leading-relaxed">
-                With a commitment to excellence since 2010, Minerals Co. has become a trusted name in 
-                industrial minerals distribution. Our state-of-the-art manufacturing facilities and 
-                rigorous quality control ensure every product meets the highest international standards.
+                With a commitment to excellence since 2010, Minerals Co. has
+                become a trusted name in industrial minerals distribution. Our
+                state-of-the-art manufacturing facilities and rigorous quality
+                control ensure every product meets the highest international
+                standards.
               </p>
               <p className="text-lg text-foreground/80 mb-8 leading-relaxed">
-                We produce over 5000+ MT of minerals monthly, supplying industries across construction, 
-                ceramics, glass, chemicals, and more. Our efficient distribution network ensures timely 
-                delivery to every corner of the country.
+                We produce over 5000+ MT of minerals monthly, supplying
+                industries across construction, ceramics, glass, chemicals, and
+                more. Our efficient distribution network ensures timely delivery
+                to every corner of the country.
               </p>
               <Link
                 to="/about"
@@ -146,9 +154,12 @@ export default function Index() {
       <section className="py-16 md:py-24 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Our Products</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+              Our Products
+            </h2>
             <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-              Comprehensive range of industrial minerals tailored to meet diverse industry requirements
+              Comprehensive range of industrial minerals tailored to meet
+              diverse industry requirements
             </p>
           </div>
 
@@ -202,9 +213,12 @@ export default function Index() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg text-primary mb-2">Premium Quality</h3>
+                    <h3 className="font-semibold text-lg text-primary mb-2">
+                      Premium Quality
+                    </h3>
                     <p className="text-foreground/70">
-                      All minerals undergo rigorous quality testing to ensure they meet international standards
+                      All minerals undergo rigorous quality testing to ensure
+                      they meet international standards
                     </p>
                   </div>
                 </div>
@@ -216,9 +230,12 @@ export default function Index() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg text-primary mb-2">Reliable Supply Chain</h3>
+                    <h3 className="font-semibold text-lg text-primary mb-2">
+                      Reliable Supply Chain
+                    </h3>
                     <p className="text-foreground/70">
-                      Strategic distribution network ensures timely delivery across all regions
+                      Strategic distribution network ensures timely delivery
+                      across all regions
                     </p>
                   </div>
                 </div>
@@ -230,9 +247,12 @@ export default function Index() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg text-primary mb-2">Competitive Pricing</h3>
+                    <h3 className="font-semibold text-lg text-primary mb-2">
+                      Competitive Pricing
+                    </h3>
                     <p className="text-foreground/70">
-                      Best market prices without compromising on quality and service excellence
+                      Best market prices without compromising on quality and
+                      service excellence
                     </p>
                   </div>
                 </div>
@@ -244,9 +264,12 @@ export default function Index() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg text-primary mb-2">Expert Support</h3>
+                    <h3 className="font-semibold text-lg text-primary mb-2">
+                      Expert Support
+                    </h3>
                     <p className="text-foreground/70">
-                      Dedicated team ready to assist with technical guidance and custom requirements
+                      Dedicated team ready to assist with technical guidance and
+                      custom requirements
                     </p>
                   </div>
                 </div>
@@ -264,7 +287,9 @@ export default function Index() {
       <section className="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-accent/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Our Quality Promise</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+              Our Quality Promise
+            </h2>
             <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
               Excellence in every aspect of our operations
             </p>
@@ -274,14 +299,21 @@ export default function Index() {
             {highlights.map((highlight) => {
               const IconComponent = highlight.icon;
               return (
-                <div key={highlight.number} className="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow">
+                <div
+                  key={highlight.number}
+                  className="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow"
+                >
                   <div className="mb-4">
-                    <span className="text-4xl font-bold text-accent">{highlight.number}</span>
+                    <span className="text-4xl font-bold text-accent">
+                      {highlight.number}
+                    </span>
                   </div>
                   <div className="mb-4 text-primary">
                     <IconComponent size={40} />
                   </div>
-                  <h3 className="font-bold text-lg text-primary mb-2">{highlight.title}</h3>
+                  <h3 className="font-bold text-lg text-primary mb-2">
+                    {highlight.title}
+                  </h3>
                   <p className="text-foreground/70">{highlight.description}</p>
                 </div>
               );
@@ -293,9 +325,12 @@ export default function Index() {
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-primary text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Get Started?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Ready to Get Started?
+          </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Contact us today for a free quote and discover how we can meet your mineral supply needs
+            Contact us today for a free quote and discover how we can meet your
+            mineral supply needs
           </p>
           <Link
             to="/contact"

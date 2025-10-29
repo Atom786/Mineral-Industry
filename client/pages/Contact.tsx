@@ -16,7 +16,10 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Address",
-    details: ["Industrial Area, Rajasthan, India", "Factory: Mineral Processing Zone"],
+    details: [
+      "Industrial Area, Rajasthan, India",
+      "Factory: Mineral Processing Zone",
+    ],
   },
   {
     icon: Clock,
@@ -35,9 +38,15 @@ export default function Contact() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -56,7 +65,7 @@ export default function Contact() {
       // See the EmailJS setup section below for instructions
 
       // Simulate a small delay like a real request
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
       setSubmitStatus("success");
       setFormData({
@@ -108,7 +117,9 @@ export default function Contact() {
                   <div className="text-accent mb-4">
                     <IconComponent size={32} />
                   </div>
-                  <h3 className="font-bold text-lg text-primary mb-3">{info.title}</h3>
+                  <h3 className="font-bold text-lg text-primary mb-3">
+                    {info.title}
+                  </h3>
                   <div className="space-y-2">
                     {info.details.map((detail, detailIdx) => (
                       <p key={detailIdx} className="text-foreground/70 text-sm">
@@ -129,14 +140,17 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Form */}
             <div>
-              <h2 className="text-3xl font-bold text-primary mb-8">Send us a Message</h2>
-              
+              <h2 className="text-3xl font-bold text-primary mb-8">
+                Send us a Message
+              </h2>
+
               {submitStatus === "success" && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
-                  Thank you! Your message has been sent successfully. We'll get back to you soon.
+                  Thank you! Your message has been sent successfully. We'll get
+                  back to you soon.
                 </div>
               )}
-              
+
               {submitStatus === "error" && (
                 <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
                   Something went wrong. Please try again or contact us directly.
@@ -257,22 +271,32 @@ export default function Contact() {
               <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg h-96 flex items-center justify-center">
                 <div className="text-center">
                   <MapPin size={64} className="mx-auto text-primary/40 mb-4" />
-                  <p className="text-foreground/60 font-medium">Industrial Area, Rajasthan, India</p>
-                  <p className="text-foreground/40 text-sm mt-2">Map integration coming soon</p>
+                  <p className="text-foreground/60 font-medium">
+                    Industrial Area, Rajasthan, India
+                  </p>
+                  <p className="text-foreground/40 text-sm mt-2">
+                    Map integration coming soon
+                  </p>
                 </div>
               </div>
 
               <div className="mt-8 p-6 bg-muted/30 rounded-lg">
                 <h3 className="font-bold text-primary mb-4">Office Address</h3>
                 <p className="text-foreground/70 mb-4">
-                  Main Office<br />
-                  Industrial Area<br />
+                  Main Office
+                  <br />
+                  Industrial Area
+                  <br />
                   Rajasthan, India 000000
                 </p>
-                <h3 className="font-bold text-primary mb-4">Manufacturing Unit</h3>
+                <h3 className="font-bold text-primary mb-4">
+                  Manufacturing Unit
+                </h3>
                 <p className="text-foreground/70">
-                  Mineral Processing Zone<br />
-                  Industrial Area<br />
+                  Mineral Processing Zone
+                  <br />
+                  Industrial Area
+                  <br />
                   Rajasthan, India 000000
                 </p>
               </div>
@@ -285,19 +309,37 @@ export default function Contact() {
       <section className="py-16 md:py-24 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-bold text-primary mb-6">EmailJS Setup Required</h2>
+            <h2 className="text-2xl font-bold text-primary mb-6">
+              EmailJS Setup Required
+            </h2>
             <p className="text-foreground/70 mb-4">
-              To enable email notifications for contact form submissions, you need to set up EmailJS:
+              To enable email notifications for contact form submissions, you
+              need to set up EmailJS:
             </p>
             <ol className="text-left text-foreground/70 space-y-3 mb-8">
-              <li>1. Sign up at <a href="https://www.emailjs.com/" target="_blank" rel="noopener noreferrer" className="text-accent font-semibold hover:underline">emailjs.com</a></li>
+              <li>
+                1. Sign up at{" "}
+                <a
+                  href="https://www.emailjs.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent font-semibold hover:underline"
+                >
+                  emailjs.com
+                </a>
+              </li>
               <li>2. Create an email service in your EmailJS account</li>
               <li>3. Create an email template for contact form submissions</li>
-              <li>4. Replace the placeholder IDs in the Contact.tsx file with your actual EmailJS credentials</li>
+              <li>
+                4. Replace the placeholder IDs in the Contact.tsx file with your
+                actual EmailJS credentials
+              </li>
               <li>5. Deploy to Netlify or Vercel for production use</li>
             </ol>
             <p className="text-foreground/60 text-sm">
-              Note: The form is fully functional but currently uses placeholder credentials. Update them with your actual EmailJS details to send real emails.
+              Note: The form is fully functional but currently uses placeholder
+              credentials. Update them with your actual EmailJS details to send
+              real emails.
             </p>
           </div>
         </div>

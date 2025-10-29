@@ -28,19 +28,31 @@ export default function Layout({ children }: LayoutProps) {
         <div className="bg-primary text-primary-foreground py-2 text-sm hidden md:block">
           <div className="container mx-auto flex justify-between items-center">
             <div className="flex gap-6">
-              <a href="tel:+919876543210" className="flex items-center gap-2 hover:opacity-80">
+              <a
+                href="tel:+919876543210"
+                className="flex items-center gap-2 hover:opacity-80"
+              >
                 <Phone size={16} />
                 <span>+91 98765 43210</span>
               </a>
-              <a href="mailto:info@minerals.com" className="flex items-center gap-2 hover:opacity-80">
+              <a
+                href="mailto:info@minerals.com"
+                className="flex items-center gap-2 hover:opacity-80"
+              >
                 <Mail size={16} />
                 <span>info@minerals.com</span>
               </a>
             </div>
             <div className="flex gap-4">
-              <a href="#" className="hover:opacity-80">Facebook</a>
-              <a href="#" className="hover:opacity-80">LinkedIn</a>
-              <a href="#" className="hover:opacity-80">Instagram</a>
+              <a href="#" className="hover:opacity-80">
+                Facebook
+              </a>
+              <a href="#" className="hover:opacity-80">
+                LinkedIn
+              </a>
+              <a href="#" className="hover:opacity-80">
+                Instagram
+              </a>
             </div>
           </div>
         </div>
@@ -122,9 +134,7 @@ export default function Layout({ children }: LayoutProps) {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
 
       {/* Footer */}
       <footer className="bg-primary text-primary-foreground">
@@ -134,7 +144,8 @@ export default function Layout({ children }: LayoutProps) {
             <div>
               <h3 className="font-bold text-lg mb-4">About Us</h3>
               <p className="text-sm opacity-90">
-                Leading supplier of industrial minerals and products with over 15 years of excellence in the industry.
+                Leading supplier of industrial minerals and products with over
+                15 years of excellence in the industry.
               </p>
             </div>
 
@@ -144,7 +155,10 @@ export default function Layout({ children }: LayoutProps) {
               <ul className="space-y-2 text-sm">
                 {navLinks.map((link) => (
                   <li key={link.path}>
-                    <Link to={link.path} className="opacity-90 hover:opacity-100 transition-opacity">
+                    <Link
+                      to={link.path}
+                      className="opacity-90 hover:opacity-100 transition-opacity"
+                    >
                       {link.label}
                     </Link>
                   </li>

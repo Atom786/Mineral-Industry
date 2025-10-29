@@ -6,42 +6,50 @@ const applications = [
   {
     title: "Construction Industry",
     icon: "🏗️",
-    description: "Dolomite and calcite used in concrete, mortar, and construction aggregates for structural applications",
+    description:
+      "Dolomite and calcite used in concrete, mortar, and construction aggregates for structural applications",
   },
   {
     title: "Ceramic & Tiles",
     icon: "🎨",
-    description: "Premium minerals used in ceramic tiles, sanitaryware, and porcelain manufacturing",
+    description:
+      "Premium minerals used in ceramic tiles, sanitaryware, and porcelain manufacturing",
   },
   {
     title: "Glass Manufacturing",
     icon: "🔵",
-    description: "High-purity minerals essential for producing transparent and colored glass products",
+    description:
+      "High-purity minerals essential for producing transparent and colored glass products",
   },
   {
     title: "Chemical Industry",
     icon: "⚗️",
-    description: "Industrial-grade minerals used in chemical production and processing applications",
+    description:
+      "Industrial-grade minerals used in chemical production and processing applications",
   },
   {
     title: "Paint & Coatings",
     icon: "🎭",
-    description: "Calcite powder used as filler and extender in paints, coatings, and pigments",
+    description:
+      "Calcite powder used as filler and extender in paints, coatings, and pigments",
   },
   {
     title: "Plastic & Polymers",
     icon: "🔧",
-    description: "Mineral fillers for improving strength, durability, and thermal properties of plastics",
+    description:
+      "Mineral fillers for improving strength, durability, and thermal properties of plastics",
   },
   {
     title: "Paper & Pulp",
     icon: "📄",
-    description: "Fine minerals used in paper coating and filling for improved finish and brightness",
+    description:
+      "Fine minerals used in paper coating and filling for improved finish and brightness",
   },
   {
     title: "Pharmaceutical",
     icon: "💊",
-    description: "Ultra-pure minerals meeting pharmaceutical and food-grade standards",
+    description:
+      "Ultra-pure minerals meeting pharmaceutical and food-grade standards",
   },
 ];
 
@@ -70,7 +78,9 @@ export default function Applications() {
                 <div className="flex items-start gap-4">
                   <div className="text-4xl">{app.icon}</div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-primary mb-2">{app.title}</h3>
+                    <h3 className="text-xl font-bold text-primary mb-2">
+                      {app.title}
+                    </h3>
                     <p className="text-foreground/70">{app.description}</p>
                   </div>
                 </div>
@@ -80,20 +90,27 @@ export default function Applications() {
 
           {/* Info Section */}
           <div className="p-8 bg-muted/30 rounded-lg">
-            <h2 className="text-2xl font-bold text-primary mb-6">Industry-Specific Solutions</h2>
+            <h2 className="text-2xl font-bold text-primary mb-6">
+              Industry-Specific Solutions
+            </h2>
             <p className="text-lg text-foreground/80 mb-6 leading-relaxed">
-              Our minerals are specially processed and graded to meet the specific requirements of each industry. 
-              Whether you need ultra-fine particles for paint, coarse aggregates for construction, or chemically 
-              pure minerals for pharmaceuticals, we have the solution.
+              Our minerals are specially processed and graded to meet the
+              specific requirements of each industry. Whether you need
+              ultra-fine particles for paint, coarse aggregates for
+              construction, or chemically pure minerals for pharmaceuticals, we
+              have the solution.
             </p>
             <p className="text-lg text-foreground/80 mb-8 leading-relaxed">
-              Our technical team works closely with customers to understand their specific needs and provide 
-              customized mineral solutions that ensure optimal performance and cost-effectiveness.
+              Our technical team works closely with customers to understand
+              their specific needs and provide customized mineral solutions that
+              ensure optimal performance and cost-effectiveness.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h3 className="font-bold text-primary mb-3">Quality Assurance</h3>
+                <h3 className="font-bold text-primary mb-3">
+                  Quality Assurance
+                </h3>
                 <ul className="space-y-2 text-foreground/70">
                   <li>✓ ISO certified processing</li>
                   <li>✓ Strict quality control</li>
@@ -118,9 +135,12 @@ export default function Applications() {
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-primary text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Need Minerals for Your Industry?</h2>
+          <h2 className="text-3xl font-bold mb-6">
+            Need Minerals for Your Industry?
+          </h2>
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            Let's discuss your specific requirements and find the perfect mineral solution for your application
+            Let's discuss your specific requirements and find the perfect
+            mineral solution for your application
           </p>
           <Link
             to="/contact"

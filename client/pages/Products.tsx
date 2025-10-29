@@ -8,7 +8,8 @@ const products = [
     name: "Dolomite Powder",
     path: "/products/dolomite-powder",
     image: "🪨",
-    description: "Fine dolomite powder used in ceramics, construction, and chemical industries",
+    description:
+      "Fine dolomite powder used in ceramics, construction, and chemical industries",
     specifications: ["99% Purity", "Fine Mesh Size", "ISO Certified"],
   },
   {
@@ -16,7 +17,8 @@ const products = [
     name: "Dolomite Sand",
     path: "/products/dolomite-sand",
     image: "🏜️",
-    description: "Coarse dolomite sand suitable for construction and industrial applications",
+    description:
+      "Coarse dolomite sand suitable for construction and industrial applications",
     specifications: ["Uniform Grain Size", "Low Impurities", "High Durability"],
   },
   {
@@ -24,7 +26,8 @@ const products = [
     name: "Dolomite Lumps",
     path: "/products/dolomite-lumps",
     image: "⛏️",
-    description: "Raw dolomite lumps for various industrial processing applications",
+    description:
+      "Raw dolomite lumps for various industrial processing applications",
     specifications: ["Natural Form", "Premium Quality", "Bulk Available"],
   },
   {
@@ -32,7 +35,8 @@ const products = [
     name: "Calcite Powder",
     path: "/products/calcite-powder",
     image: "✨",
-    description: "High-purity calcite powder for paint, plastics, and pharmaceutical industries",
+    description:
+      "High-purity calcite powder for paint, plastics, and pharmaceutical industries",
     specifications: ["High Brightness", "Fine Grind", "Low Heavy Metals"],
   },
   {
@@ -40,7 +44,8 @@ const products = [
     name: "Marble Powder",
     path: "/products/marble-powder",
     image: "🎨",
-    description: "Premium marble powder for decorative and industrial applications",
+    description:
+      "Premium marble powder for decorative and industrial applications",
     specifications: ["Pure White", "Ultra Fine", "Food Grade Available"],
   },
   {
@@ -48,8 +53,13 @@ const products = [
     name: "Soap Stone",
     path: "/products/soap-stone",
     image: "💎",
-    description: "High-quality soap stone for ceramics, tiles, and heat-resistant products",
-    specifications: ["Superior Quality", "Low Abrasive", "Consistent Composition"],
+    description:
+      "High-quality soap stone for ceramics, tiles, and heat-resistant products",
+    specifications: [
+      "Superior Quality",
+      "Low Abrasive",
+      "Consistent Composition",
+    ],
   },
 ];
 
@@ -61,7 +71,8 @@ export default function Products() {
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Products</h1>
           <p className="text-xl text-white/90 max-w-2xl">
-            Comprehensive range of high-quality industrial minerals for every industry need
+            Comprehensive range of high-quality industrial minerals for every
+            industry need
           </p>
         </div>
       </section>
@@ -79,14 +90,23 @@ export default function Products() {
                   {product.image}
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-primary mb-2">{product.name}</h3>
-                  <p className="text-foreground/70 mb-4">{product.description}</p>
-                  
+                  <h3 className="text-xl font-bold text-primary mb-2">
+                    {product.name}
+                  </h3>
+                  <p className="text-foreground/70 mb-4">
+                    {product.description}
+                  </p>
+
                   <div className="mb-6">
-                    <p className="text-sm font-semibold text-primary mb-2">Key Features:</p>
+                    <p className="text-sm font-semibold text-primary mb-2">
+                      Key Features:
+                    </p>
                     <ul className="space-y-1">
                       {product.specifications.map((spec, idx) => (
-                        <li key={idx} className="text-sm text-foreground/60 flex items-center gap-2">
+                        <li
+                          key={idx}
+                          className="text-sm text-foreground/60 flex items-center gap-2"
+                        >
                           <span className="text-accent">✓</span> {spec}
                         </li>
                       ))}
@@ -106,10 +126,13 @@ export default function Products() {
           </div>
 
           <div className="mt-16 p-8 bg-muted/30 rounded-lg text-center">
-            <h3 className="text-2xl font-bold text-primary mb-4">Custom Products Available</h3>
+            <h3 className="text-2xl font-bold text-primary mb-4">
+              Custom Products Available
+            </h3>
             <p className="text-foreground/70 mb-6 max-w-2xl mx-auto">
-              Need a specific product or custom specification? We offer tailored solutions to meet 
-              your exact requirements. Contact our team for custom orders.
+              Need a specific product or custom specification? We offer tailored
+              solutions to meet your exact requirements. Contact our team for
+              custom orders.
             </p>
             <Link
               to="/contact"
