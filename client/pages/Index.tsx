@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Award, Zap, Truck, Clock } from "lucide-react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import Layout from "@/components/Layout";
 
 const products = [
