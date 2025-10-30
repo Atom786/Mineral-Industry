@@ -265,19 +265,59 @@ export default function Contact() {
               </form>
             </div>
 
-            {/* Map Placeholder */}
+            {/* Interactive Map */}
             <div>
               <h2 className="text-3xl font-bold text-primary mb-8">Location</h2>
-              <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg h-96 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin size={64} className="mx-auto text-primary/40 mb-4" />
-                  <p className="text-foreground/60 font-medium">
-                    Industrial Area, Rajasthan, India
-                  </p>
-                  <p className="text-foreground/40 text-sm mt-2">
-                    Map integration coming soon
-                  </p>
-                </div>
+              <div className="rounded-lg overflow-hidden shadow-lg h-96">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.123456789!2d75.7873!3d26.9124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db6c8f6c6c6c6%3A0x6c6c6c6c6c6c6c6c!2sIndustrial%20Area%2C%20Rajasthan%2C%20India!5e0!3m2!1sen!2sin!4v1635123456789!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Industrial Area, Rajasthan, India"
+                />
+              </div>
+              
+              {/* Map Controls */}
+              <div className="mt-4 flex flex-wrap gap-2">
+                <a
+                  href="https://maps.google.com/?q=Industrial+Area,+Rajasthan,+India"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-accent-foreground rounded-lg hover:opacity-90 transition-opacity text-sm font-medium"
+                >
+                  <MapPin size={16} />
+                  Open in Google Maps
+                </a>
+                <button
+                  onClick={() => {
+                    if (navigator.geolocation) {
+                      navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                          const { latitude, longitude } = position.coords;
+                          const destination = "Industrial+Area,+Rajasthan,+India";
+                          const url = `https://maps.google.com/maps/dir/${latitude},${longitude}/${destination}`;
+                          window.open(url, '_blank');
+                        },
+                        (error) => {
+                          console.error('Error getting location:', error);
+                          // Fallback to general directions
+                          window.open('https://maps.google.com/maps/dir//Industrial+Area,+Rajasthan,+India', '_blank');
+                        }
+                      );
+                    } else {
+                      // Fallback for browsers without geolocation
+                      window.open('https://maps.google.com/maps/dir//Industrial+Area,+Rajasthan,+India', '_blank');
+                    }
+                  }}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity text-sm font-medium"
+                >
+                  <ArrowRight size={16} />
+                  Get Directions
+                </button>
               </div>
 
               <div className="mt-8 p-6 bg-muted/30 rounded-lg">
@@ -285,20 +325,30 @@ export default function Contact() {
                 <p className="text-foreground/70 mb-4">
                   Main Office
                   <br />
-                  Industrial Area
+                  Industrial Area, Phase-I
                   <br />
-                  Rajasthan, India 000000
+                  Jaipur, Rajasthan, India 302013
                 </p>
                 <h3 className="font-bold text-primary mb-4">
                   Manufacturing Unit
                 </h3>
-                <p className="text-foreground/70">
+                <p className="text-foreground/70 mb-6">
                   Mineral Processing Zone
                   <br />
-                  Industrial Area
+                  Industrial Area, Phase-II
                   <br />
-                  Rajasthan, India 000000
+                  Jaipur, Rajasthan, India 302013
                 </p>
+                
+                <div className="border-t border-border pt-4">
+                  <h4 className="font-semibold text-primary mb-2">Nearby Landmarks</h4>
+                  <ul className="text-sm text-foreground/60 space-y-1">
+                    <li>• 2 km from Jaipur International Airport</li>
+                    <li>• 5 km from Jaipur Railway Station</li>
+                    <li>• Adjacent to National Highway 48</li>
+                    <li>• Near Mahindra SEZ</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

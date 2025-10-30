@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, MapPin, Phone, Mail } from "lucide-react";
+import { Menu, X, MapPin, Phone, Mail, Facebook, Linkedin, Instagram } from "lucide-react";
 
 interface LayoutProps {
   children: ReactNode;
@@ -43,15 +43,33 @@ export default function Layout({ children }: LayoutProps) {
                 <span>info@minerals.com</span>
               </a>
             </div>
-            <div className="flex gap-4">
-              <a href="#" className="hover:opacity-80">
-                Facebook
+            <div className="flex gap-3">
+              <a 
+                href="https://facebook.com" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity p-1 hover:bg-white/10 rounded"
+                aria-label="Follow us on Facebook"
+              >
+                <Facebook size={18} />
               </a>
-              <a href="#" className="hover:opacity-80">
-                LinkedIn
+              <a 
+                href="https://linkedin.com" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity p-1 hover:bg-white/10 rounded"
+                aria-label="Connect with us on LinkedIn"
+              >
+                <Linkedin size={18} />
               </a>
-              <a href="#" className="hover:opacity-80">
-                Instagram
+              <a 
+                href="https://instagram.com" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity p-1 hover:bg-white/10 rounded"
+                aria-label="Follow us on Instagram"
+              >
+                <Instagram size={18} />
               </a>
             </div>
           </div>
