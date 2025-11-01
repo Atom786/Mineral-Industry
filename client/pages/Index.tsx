@@ -1,7 +1,43 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Award, Zap, Truck, Clock } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight, Award, Zap, Truck, Clock, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
+import "../styles/hero-banner.css";
+
+// Hero Banner Media Array - Add your images and videos here
+const heroMedia = [
+  {
+    id: 1,
+    type: "image",
+    src: "/images/hero/mining-operation-1.jpg",
+    alt: "Premium mineral extraction facility"
+  },
+  {
+    id: 2,
+    type: "video",
+    src: "/videos/hero/production-process.mp4",
+    alt: "Industrial mineral processing"
+  },
+  {
+    id: 3,
+    type: "image",
+    src: "/images/hero/quality-control.jpg",
+    alt: "Quality control laboratory"
+  },
+  {
+    id: 4,
+    type: "image",
+    src: "/images/hero/warehouse-facility.jpg",
+    alt: "Modern warehouse facility"
+  },
+  {
+    id: 5,
+    type: "video",
+    src: "/videos/hero/logistics-delivery.mp4",
+    alt: "Logistics and delivery operations"
+  }
+];
 
 const products = [
   {
@@ -71,48 +107,111 @@ const highlights = [
 ];
 
 export default function Index() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroMedia.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroMedia.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + heroMedia.length) % heroMedia.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-primary to-primary-dark min-h-[500px] md:min-h-screen flex items-center text-white overflow-hidden">
-        {/* Animated Background Elements */}
-        <motion.div
-          className="absolute inset-0 opacity-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1 }}
-          transition={{ duration: 1 }}
-        >
-          <motion.div
-            className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl"
-            animate={{
-              y: [0, 50, 0],
-              x: [0, 30, 0],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-          <motion.div
-            className="absolute bottom-10 right-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl"
-            animate={{
-              y: [0, -50, 0],
-              x: [0, -30, 0],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1,
-            }}
-          />
-        </motion.div>
+      {/* Hero Banner Slider Section */}
+      <section 
+        className="hero-banner relative min-h-[500px] md:min-h-screen flex items-center text-white overflow-hidden"
+        onMouseEnter={() => setIsAutoPlaying(false)}
+        onMouseLeave={() => setIsAutoPlaying(true)}
+      >
+        {/* Media Background Slider */}
+        <div className="absolute inset-0">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.8 }}
+              className="absolute inset-0"
+            >
+              {heroMedia[currentSlide].type === "image" ? (
+                <img
+                  src={heroMedia[currentSlide].src}
+                  alt={heroMedia[currentSlide].alt}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <video
+                  src={heroMedia[currentSlide].src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              )}
+              {/* Dark overlay for better text readability */}
+              <div className="absolute inset-0 bg-black/50" />
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-        <div className="container mx-auto px-4 relative z-10 py-20 md:py-0">
+        {/* Navigation Arrows */}
+        <button
+          onClick={prevSlide}
+          className="nav-arrow absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-2 md:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft size={24} />
+        </button>
+        
+        <button
+          onClick={nextSlide}
+          className="nav-arrow absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-2 md:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
+          aria-label="Next slide"
+        >
+          <ChevronRight size={24} />
+        </button>
+
+        {/* Slide Indicators */}
+        <div className="slide-indicators absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          {heroMedia.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`slide-indicator w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide 
+                  ? "bg-accent scale-125" 
+                  : "bg-white/50 hover:bg-white/75"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Content Overlay */}
+        <div className="content-overlay container mx-auto px-4 relative z-10 py-16 md:py-20">
           <div className="max-w-2xl">
             <motion.h1
-              className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight drop-shadow-lg"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -120,7 +219,7 @@ export default function Index() {
               Premium Industrial Minerals & Products
             </motion.h1>
             <motion.p
-              className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed"
+              className="text-base md:text-lg lg:text-xl text-white/90 mb-6 md:mb-8 leading-relaxed drop-shadow-md"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -130,27 +229,33 @@ export default function Index() {
               products and unmatched service.
             </motion.p>
             <motion.div
-              className="flex flex-col sm:flex-row gap-4"
+              className="button-group flex flex-col sm:flex-row gap-3 md:gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <Link
                 to="/contact"
-                className="bg-accent text-accent-foreground px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2"
+                className="bg-accent text-accent-foreground px-6 md:px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 shadow-lg text-center"
               >
                 Get Your Quote
                 <ArrowRight size={20} />
               </Link>
               <Link
                 to="/products"
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2"
+                className="border-2 border-white text-white px-6 md:px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2 backdrop-blur-sm text-center"
               >
                 View Products
                 <ArrowRight size={20} />
               </Link>
             </motion.div>
           </div>
+        </div>
+
+        {/* Media Type Indicator */}
+        <div className="absolute top-4 right-4 z-20 bg-black/30 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
+          {heroMedia[currentSlide].type === "video" ? "📹" : "📷"} 
+          {currentSlide + 1} / {heroMedia.length}
         </div>
       </section>
 
@@ -179,10 +284,10 @@ export default function Index() {
               viewport={{ once: true, amount: 0.3 }}
             >
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-                Welcome To Minerals Co.
+                Welcome To R.L MINERALS MINING
               </h2>
               <p className="text-lg text-foreground/80 mb-6 leading-relaxed">
-                With a commitment to excellence since 2010, Minerals Co. has
+                With a commitment to excellence since 2010, R.L MINERALS MINING has
                 become a trusted name in industrial minerals distribution. Our
                 state-of-the-art manufacturing facilities and rigorous quality
                 control ensure every product meets the highest international

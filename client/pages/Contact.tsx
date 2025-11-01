@@ -11,7 +11,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    details: ["info@minerals.com", "sales@minerals.com"],
+    details: ["info@rlminerals.com", "sales@rlminerals.com"],
   },
   {
     icon: MapPin,

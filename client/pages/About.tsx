@@ -9,7 +9,7 @@ export default function About() {
       <section className="bg-gradient-to-br from-primary to-primary/80 text-white py-16 md:py-24">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            About Minerals Co.
+            About R.L MINERALS MINING
           </h1>
           <p className="text-xl text-white/90 max-w-2xl">
             Discover our journey of excellence in mineral production and supply
@@ -25,7 +25,7 @@ export default function About() {
               Our Company
             </h2>
             <p className="text-lg text-foreground/80 mb-6 leading-relaxed">
-              Founded in 2010, Minerals Co. has grown to become one of the
+              Founded in 2010, R.L MINERALS MINING has grown to become one of the
               leading suppliers of industrial minerals in the region. With
               state-of-the-art facilities and a dedicated team, we have earned
               the trust of thousands of customers across various industries.

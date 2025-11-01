@@ -1,0 +1,123 @@
+/* Hero Banner Slider Styles */
+.hero-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Responsive video handling */
+.hero-banner video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Smooth transitions for media */
+.hero-banner img,
+.hero-banner video {
+  transition: transform 0.3s ease;
+}
+
+.hero-banner:hover img,
+.hero-banner:hover video {
+  transform: scale(1.02);
+}
+
+/* Navigation arrows responsive design */
+@media (max-width: 768px) {
+  .hero-banner .nav-arrow {
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .hero-banner .nav-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Slide indicators responsive */
+@media (max-width: 640px) {
+  .hero-banner .slide-indicators {
+    bottom: 20px;
+  }
+  
+  .hero-banner .slide-indicator {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* Content overlay responsive */
+@media (max-width: 768px) {
+  .hero-banner .content-overlay {
+    padding: 60px 16px;
+  }
+  
+  .hero-banner .content-overlay h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  
+  .hero-banner .content-overlay p {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-banner .content-overlay h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-banner .content-overlay .button-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .hero-banner .content-overlay .button-group a {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Loading placeholder for media */
+.hero-banner .media-loading {
+  background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), 
+              linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), 
+              linear-gradient(45deg, transparent 75%, #f0f0f0 75%), 
+              linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  animation: loading-animation 1s linear infinite;
+}
+
+@keyframes loading-animation {
+  0% {
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+  100% {
+    background-position: 20px 20px, 20px 30px, 30px 10px, 10px 20px;
+  }
+}
+
+/* Accessibility improvements */
+.hero-banner button:focus {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.hero-banner .slide-indicator:focus {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .hero-banner * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
