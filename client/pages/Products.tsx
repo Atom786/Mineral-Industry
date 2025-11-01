@@ -1,67 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
-
-const products = [
-  {
-    id: 1,
-    name: "Dolomite Powder",
-    path: "/products/dolomite-powder",
-    image: "🪨",
-    description:
-      "Fine dolomite powder used in ceramics, construction, and chemical industries",
-    specifications: ["99% Purity", "Fine Mesh Size", "ISO Certified"],
-  },
-  {
-    id: 2,
-    name: "Dolomite Sand",
-    path: "/products/dolomite-sand",
-    image: "🏜️",
-    description:
-      "Coarse dolomite sand suitable for construction and industrial applications",
-    specifications: ["Uniform Grain Size", "Low Impurities", "High Durability"],
-  },
-  {
-    id: 3,
-    name: "Dolomite Lumps",
-    path: "/products/dolomite-lumps",
-    image: "⛏️",
-    description:
-      "Raw dolomite lumps for various industrial processing applications",
-    specifications: ["Natural Form", "Premium Quality", "Bulk Available"],
-  },
-  {
-    id: 4,
-    name: "Calcite Powder",
-    path: "/products/calcite-powder",
-    image: "✨",
-    description:
-      "High-purity calcite powder for paint, plastics, and pharmaceutical industries",
-    specifications: ["High Brightness", "Fine Grind", "Low Heavy Metals"],
-  },
-  {
-    id: 5,
-    name: "Marble Powder",
-    path: "/products/marble-powder",
-    image: "🎨",
-    description:
-      "Premium marble powder for decorative and industrial applications",
-    specifications: ["Pure White", "Ultra Fine", "Food Grade Available"],
-  },
-  {
-    id: 6,
-    name: "Soap Stone",
-    path: "/products/soap-stone",
-    image: "💎",
-    description:
-      "High-quality soap stone for ceramics, tiles, and heat-resistant products",
-    specifications: [
-      "Superior Quality",
-      "Low Abrasive",
-      "Consistent Composition",
-    ],
-  },
-];
+import { productList } from "@/data/productList";
 
 export default function Products() {
   return (
@@ -81,7 +21,7 @@ export default function Products() {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product) => (
+            {productList.map((product) => (
               <div
                 key={product.id}
                 className="border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
@@ -97,9 +37,9 @@ export default function Products() {
                     {product.description}
                   </p>
 
-                  <div className="mb-6">
+                  <div className="mb-4">
                     <p className="text-sm font-semibold text-primary mb-2">
-                      Key Features:
+                      Specifications:
                     </p>
                     <ul className="space-y-1">
                       {product.specifications.map((spec, idx) => (
@@ -111,6 +51,22 @@ export default function Products() {
                         </li>
                       ))}
                     </ul>
+                  </div>
+
+                  <div className="mb-6">
+                    <p className="text-sm font-semibold text-primary mb-2">
+                      Applications:
+                    </p>
+                    <div className="flex flex-wrap gap-1">
+                      {product.applications.slice(0, 3).map((app, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full"
+                        >
+                          {app}
+                        </span>
+                      ))}
+                    </div>
                   </div>
 
                   <Link

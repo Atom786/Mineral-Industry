@@ -3,6 +3,7 @@ import { ArrowRight, Award, Zap, Truck, Clock, ChevronLeft, ChevronRight } from 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
+import { productList } from "@/data/productList";
 import "../styles/hero-banner.css";
 
 // Hero Banner Media Array - Add your images and videos here
@@ -39,44 +40,8 @@ const heroMedia = [
   }
 ];
 
-const products = [
-  {
-    id: 1,
-    name: "Dolomite Powder",
-    path: "/products/dolomite-powder",
-    image: "🪨",
-  },
-  {
-    id: 2,
-    name: "Dolomite Sand",
-    path: "/products/dolomite-sand",
-    image: "🏜️",
-  },
-  {
-    id: 3,
-    name: "Dolomite Lumps",
-    path: "/products/dolomite-lumps",
-    image: "⛏️",
-  },
-  {
-    id: 4,
-    name: "Calcite Powder",
-    path: "/products/calcite-powder",
-    image: "✨",
-  },
-  {
-    id: 5,
-    name: "Marble Powder",
-    path: "/products/marble-powder",
-    image: "🎨",
-  },
-  {
-    id: 6,
-    name: "Soap Stone",
-    path: "/products/soap-stone",
-    image: "💎",
-  },
-];
+// Use first 6 products for homepage display
+const products = productList.slice(0, 6);
 
 const highlights = [
   {

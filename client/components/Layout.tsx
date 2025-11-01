@@ -1,7 +1,8 @@
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, MapPin, Phone, Mail, Facebook, Linkedin, Instagram } from "lucide-react";
+import { Menu, X, MapPin, Phone, Mail, Facebook, Linkedin, Instagram, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
+import { getProductNames } from "@/data/productList";
 import "../styles/logo.css";
 
 interface LayoutProps {
@@ -11,9 +12,26 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
   const location = useLocation();
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const isActive = (path: string) => location.pathname === path;
+  const productNames = getProductNames();
+
+  const handleMouseEnterProducts = () => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+      dropdownTimeoutRef.current = null;
+    }
+    setProductsDropdownOpen(true);
+  };
+
+  const handleMouseLeaveProducts = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setProductsDropdownOpen(false);
+    }, 150); // 150ms delay before closing
+  };
 
   // Handle scroll effect for header
   useEffect(() => {
@@ -23,6 +41,15 @@ export default function Layout({ children }: LayoutProps) {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeoutRef.current) {
+        clearTimeout(dropdownTimeoutRef.current);
+      }
+    };
   }, []);
 
   const navLinks = [
@@ -99,17 +126,82 @@ export default function Layout({ children }: LayoutProps) {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-6 xl:gap-8 flex-shrink-0">
               {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`font-medium transition-colors whitespace-nowrap text-sm xl:text-base relative ${
-                    isActive(link.path)
-                      ? "text-accent after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-0.5 after:bg-accent after:rounded"
-                      : "text-foreground hover:text-accent"
-                  }`}
-                >
-                  {link.label}
-                </Link>
+                link.label === "Products" ? (
+                  <div
+                    key={link.path}
+                    className="relative group"
+                    onMouseEnter={handleMouseEnterProducts}
+                    onMouseLeave={handleMouseLeaveProducts}
+                  >
+                    <Link
+                      to={link.path}
+                      className={`font-medium transition-colors whitespace-nowrap text-sm xl:text-base relative flex items-center gap-1 py-2 ${
+                        isActive(link.path) || location.pathname.startsWith('/products/')
+                          ? "text-accent after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-0.5 after:bg-accent after:rounded"
+                          : "text-foreground hover:text-accent"
+                      }`}
+                    >
+                      {link.label}
+                      <ChevronDown size={16} className={`transition-transform ${productsDropdownOpen ? 'rotate-180' : ''}`} />
+                    </Link>
+                    
+                    {/* Products Dropdown */}
+                    {productsDropdownOpen && (
+                      <div className="absolute top-full left-0 pt-2 w-64 z-50">
+                        {/* Invisible bridge to prevent gap issues */}
+                        <div className="absolute top-0 left-0 right-0 h-2 bg-transparent"></div>
+                        <div className="products-dropdown dropdown-shadow bg-white border border-border rounded-lg py-2 mt-1">
+                          <div className="px-4 py-2 text-xs font-semibold text-primary border-b border-border">
+                            Our Products
+                          </div>
+                          {productNames.map((product) => (
+                            <Link
+                              key={product.id}
+                              to={product.path}
+                              className="dropdown-item block px-4 py-2 text-sm text-foreground hover:bg-accent/10 hover:text-accent transition-colors"
+                              onClick={() => {
+                                setProductsDropdownOpen(false);
+                                if (dropdownTimeoutRef.current) {
+                                  clearTimeout(dropdownTimeoutRef.current);
+                                  dropdownTimeoutRef.current = null;
+                                }
+                              }}
+                            >
+                              {product.name}
+                            </Link>
+                          ))}
+                          <div className="border-t border-border mt-2 pt-2">
+                            <Link
+                              to="/products"
+                              className="dropdown-item block px-4 py-2 text-sm font-medium text-accent hover:bg-accent/10 transition-colors"
+                              onClick={() => {
+                                setProductsDropdownOpen(false);
+                                if (dropdownTimeoutRef.current) {
+                                  clearTimeout(dropdownTimeoutRef.current);
+                                  dropdownTimeoutRef.current = null;
+                                }
+                              }}
+                            >
+                              View All Products →
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`font-medium transition-colors whitespace-nowrap text-sm xl:text-base relative ${
+                      isActive(link.path)
+                        ? "text-accent after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-0.5 after:bg-accent after:rounded"
+                        : "text-foreground hover:text-accent"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
             </nav>
 
@@ -135,18 +227,55 @@ export default function Layout({ children }: LayoutProps) {
           {mobileMenuOpen && (
             <nav className="lg:hidden mt-4 flex flex-col gap-4 pb-4 border-t border-border pt-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg">
               {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`font-medium transition-all duration-200 py-3 px-4 rounded-lg ${
-                    isActive(link.path)
-                      ? "text-accent bg-accent/10 border-l-4 border-accent"
-                      : "text-foreground hover:text-accent hover:bg-accent/5 hover:translate-x-1"
-                  }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
+                link.label === "Products" ? (
+                  <div key={link.path} className="flex flex-col">
+                    <Link
+                      to={link.path}
+                      className={`font-medium transition-all duration-200 py-3 px-4 rounded-lg ${
+                        isActive(link.path) || location.pathname.startsWith('/products/')
+                          ? "text-accent bg-accent/10 border-l-4 border-accent"
+                          : "text-foreground hover:text-accent hover:bg-accent/5 hover:translate-x-1"
+                      }`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                    <div className="ml-4 mt-2 space-y-1">
+                      {productNames.slice(0, 6).map((product) => (
+                        <Link
+                          key={product.id}
+                          to={product.path}
+                          className="block py-2 px-4 text-sm text-foreground/70 hover:text-accent hover:bg-accent/5 rounded transition-colors"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {product.name}
+                        </Link>
+                      ))}
+                      {productNames.length > 6 && (
+                        <Link
+                          to="/products"
+                          className="block py-2 px-4 text-sm font-medium text-accent hover:bg-accent/5 rounded transition-colors"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          View All Products →
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`font-medium transition-all duration-200 py-3 px-4 rounded-lg ${
+                      isActive(link.path)
+                        ? "text-accent bg-accent/10 border-l-4 border-accent"
+                        : "text-foreground hover:text-accent hover:bg-accent/5 hover:translate-x-1"
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
               <Link
                 to="/contact"
