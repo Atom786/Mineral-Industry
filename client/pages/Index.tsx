@@ -6,37 +6,43 @@ import Layout from "@/components/Layout";
 import { productList } from "@/data/productList";
 import "../styles/hero-banner.css";
 
-// Hero Banner Media Array - Add your images and videos here
+// Hero Banner Media Array - Real videos and images from upload folder
 const heroMedia = [
   {
     id: 1,
-    type: "image",
-    src: "/images/hero/mining-operation-1.jpg",
-    alt: "Premium mineral extraction facility"
+    type: "video",
+    src: "/upload/videos/RAJLAXMI MINES.mov",
+    alt: "Rajlaxmi Mining Operations"
   },
   {
     id: 2,
     type: "video",
-    src: "/videos/hero/production-process.mp4",
-    alt: "Industrial mineral processing"
+    src: "/upload/videos/R L MINING & RAJLAXMI/PROJECT OK WITH SPEED.mov",
+    alt: "Mining Project Operations"
   },
   {
     id: 3,
-    type: "image",
-    src: "/images/hero/quality-control.jpg",
-    alt: "Quality control laboratory"
+    type: "video",
+    src: "/upload/videos/R L MINING & RAJLAXMI/DOLOMITE & CALCIDE OK. .mov",
+    alt: "Dolomite and Calcite Processing"
   },
   {
     id: 4,
     type: "image",
-    src: "/images/hero/warehouse-facility.jpg",
-    alt: "Modern warehouse facility"
+    src: "/upload/videos/R L MINING & RAJLAXMI/24X36.jpg",
+    alt: "Company Banner"
   },
   {
     id: 5,
     type: "video",
-    src: "/videos/hero/logistics-delivery.mp4",
-    alt: "Logistics and delivery operations"
+    src: "/upload/videos/R L MINING & RAJLAXMI/RAJLAXMI OFFICE .mov",
+    alt: "Rajlaxmi Office Facilities"
+  },
+  {
+    id: 6,
+    type: "video",
+    src: "/upload/videos/R L MINING & RAJLAXMI/RAJLAXMI CERAMIC_S 50 KG POTASH & QWARTZ .mov",
+    alt: "Ceramic Grade Potash and Quartz"
   }
 ];
 
@@ -235,11 +241,15 @@ export default function Index() {
               viewport={{ once: true, amount: 0.3 }}
             >
               <motion.div
-                className="bg-gradient-to-br from-primary to-primary/70 rounded-lg h-96 flex items-center justify-center text-6xl"
+                className="bg-gradient-to-br from-primary to-primary/70 rounded-lg h-96 flex items-center justify-center overflow-hidden"
                 whileHover={{ scale: 1.05, rotate: 2 }}
                 transition={{ duration: 0.3 }}
               >
-                🏭
+                <img
+                  src="/upload/images/Report.jpg"
+                  alt="R.L Minerals Mining Facility"
+                  className="w-full h-full object-cover rounded-lg"
+                />
               </motion.div>
             </motion.div>
             <motion.div
@@ -303,11 +313,19 @@ export default function Index() {
                   className="block bg-white rounded-lg shadow-md overflow-hidden h-full"
                 >
                   <motion.div
-                    className="bg-gradient-to-br from-primary/10 to-accent/10 h-48 flex items-center justify-center text-6xl"
-                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    className="bg-gradient-to-br from-primary/10 to-accent/10 h-48 flex items-center justify-center overflow-hidden"
+                    whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   >
-                    {product.image}
+                    {product.image.startsWith('/upload/') ? (
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="text-6xl">{product.image}</div>
+                    )}
                   </motion.div>
                   <motion.div
                     className="p-6"
@@ -416,8 +434,12 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-primary to-primary/70 rounded-lg h-96 flex items-center justify-center text-6xl">
-              ⚡
+            <div className="bg-gradient-to-br from-primary to-primary/70 rounded-lg h-96 flex items-center justify-center overflow-hidden">
+              <img
+                src="/upload/images/Clay.jpg"
+                alt="Quality Assurance Process"
+                className="w-full h-full object-cover rounded-lg"
+              />
             </div>
           </div>
         </div>

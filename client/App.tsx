@@ -11,9 +11,7 @@ import About from "./pages/About";
 import Products from "./pages/Products";
 import Applications from "./pages/Applications";
 import Contact from "./pages/Contact";
-import DolomitePowder from "./pages/products/DolomitePowder";
-import CalcitePowder from "./pages/products/CalcitePowder";
-import ProductPlaceholder from "./pages/ProductPlaceholder";
+import DynamicProductPage from "./pages/DynamicProductPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,13 +29,8 @@ const App = () => (
           <Route path="/applications" element={<Applications />} />
           <Route path="/contact" element={<Contact />} />
 
-          {/* Individual Product Pages */}
-          <Route
-            path="/products/dolomite-powder"
-            element={<DolomitePowder />}
-          />
-          <Route path="/products/calcite-powder" element={<CalcitePowder />} />
-          <Route path="/products/:product" element={<ProductPlaceholder />} />
+          {/* Dynamic Product Pages - handles all products from productList.js */}
+          <Route path="/products/:productSlug" element={<DynamicProductPage />} />
 
           {/* Catch all - 404 */}
           <Route path="*" element={<NotFound />} />
